@@ -2,24 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello from Jenkins!'
-            }
-        }
-
-        stage('System Info') {
+        stage('Build Docker Image') {
             steps {
                 sh '''
-                  echo "Date:"
-                  date
-                  echo "User:"
-                  whoami
-                  echo "Files:"
-                  ls -la
+                  docker version
+                  docker build -t jenkins-demo:latest .
                 '''
             }
         }
     }
 }
-// change
